@@ -98,7 +98,7 @@ kramdown:
     span:
       line_numbers: fales
     block:
-      line_numbers: true
+      line_numbers: false
 #      inline_theme: inline
 #      line_format: '%i'- sprintf
       start_line: 1
