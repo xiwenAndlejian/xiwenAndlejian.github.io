@@ -28,3 +28,15 @@ published: true
 ### 如何 Run/Debug 插件
 
 ![step1](/assets/img/2018_08_30_1.png)
+
+选择`Plugin`
+![step2](/assets/img/2018_09_11_1.png)
+
+如果出现如下图所示，查找不到可使用的模块
+![error1](/assets/img/2018_09_11_2.png)
+
+则是`IntelliJ IDEA`打开工程时，识别失败，把工程当做一般的`Java`项目来识别而导致的。
+
+[stack overflow解决方案](https://stackoverflow.com/questions/18278440/how-to-import-and-run-existing-plugins-from-intellij-community-edition-repo)
+
+找到项目的`.iml`文件，将其中的`JAVA_MODULE`修改为`PLUGIN_MODULE`即可。
