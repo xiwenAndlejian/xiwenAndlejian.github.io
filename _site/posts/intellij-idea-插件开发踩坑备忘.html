@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+       <meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+<title>踩坑备忘 &#9642; dekuofa的博客</title>
+<!--
+<meta name="description" content="记录关于 IntelliJ IDEA 插件开发中所遇到的坑
+">
+-->
+<meta name="description" content="分享日常学习的知识
+">
+<meta name="keywords" content="IntelliJ IDEA, 插件, 踩坑">
+<link rel="canonical" href="http://localhost:4000/posts/intellij-idea-%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E8%B8%A9%E5%9D%91%E5%A4%87%E5%BF%98">
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="踩坑备忘" />
+<meta name="twitter:description" content="分享日常学习的知识
+" />
+<meta name="twitter:image" content="http://localhost:4000" />
+<meta name="author" content="">
+<link rel="author" href="">
+<meta property="og:locale" content="">
+<meta property="og:type" content="article">
+<meta property="og:title" content="踩坑备忘">
+<meta property="og:description" content="分享日常学习的知识
+">
+<meta property="og:url" content="http://localhost:4000/posts/intellij-idea-%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E8%B8%A9%E5%9D%91%E5%A4%87%E5%BF%98">
+<meta property="og:site_name" content="dekuofa的博客">
+<link rel="stylesheet" href="/assets/vendor/normalize-css/normalize.css">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik:400,400italic,700,700italic">
+<style>
+    html {
+      font-family: "Rubik", -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+    }
+</style>
+<link rel="stylesheet" href="/assets/css/bf.css">
+      <link rel="shortcut icon" href="/assets/img/favicon.ico">
+   <body>
+       <div class="wrapper" id="blep">
+          <header>
+   <div class="menu">
+     <div class="logo">
+        <a href="/">dekuofa的博客</a>
+        <object type="image/svg+xml" data="/assets/img/dactl.svg" class="logosvg">Your browser does not support svg images</object>
+     </div>
+       <ul>
+           <li><a href="/about">about</a>
+           <li><a href="/archive">archive</a>
+       </ul>
+   </div>
+   <div class="social">
+     <ul>
+       <li>
+            <a href="https://github.com/xiwenAndlejian" target="_blank" class="smaller">
+              <span class="icon-github"></span>
+            </a>
+       <li>
+            <a href="mailto:xiwenandlejian@gmail.com" target="_blank">
+              <span class="icon-mail_outline"></span>
+            </a>
+       <li>
+            <a href="/feed.xml" target="_blank">
+                <span class="icon-rss_feed"></span>
+            </a>
+       <li>
+            <a href="#" onclick="switchTheme()" title="Switch theme?">
+              <span class="icon-invert_colors" id="theme-switcher"></span>
+            </a>
+     </ul>
+   </div>
+</header>
+<article class="post">
+<style>
+  .intellij-idea-%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E8%B8%A9%E5%9D%91%E5%A4%87%E5%BF%98 {
+    margin-bottom: 2em;
+  }
+  .intellij-idea-%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E8%B8%A9%E5%9D%91%E5%A4%87%E5%BF%98::before {
+    background-image: url('');
+    background-size: cover;
+    -webkit-filter: grayscale(1) brightness(0.5) contrast(0.5);
+    content:'';
+    position:absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+    z-index: -2;
+  }
+  .intellij-idea-%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E8%B8%A9%E5%9D%91%E5%A4%87%E5%BF%98::after {
+    content:'';
+    position:absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+    background-color: rgba(100,0,255,0.8);
+    /*mix-blend-mode: darken;
+    mix-blend-mode: color-burn;
+    mix-blend-mode: hard-light;*/
+    mix-blend-mode: overlay;
+    z-index: -1;
+  }
+  .intellij-idea-%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E8%B8%A9%E5%9D%91%E5%A4%87%E5%BF%98-container,
+  .intellij-idea-%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E8%B8%A9%E5%9D%91%E5%A4%87%E5%BF%98-container::before,
+  .intellij-idea-%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E8%B8%A9%E5%9D%91%E5%A4%87%E5%BF%98-container::after {
+    height: 25rem;
+  }
+  .intellij-idea-%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E8%B8%A9%E5%9D%91%E5%A4%87%E5%BF%98-bleed-container,
+  .intellij-idea-%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E8%B8%A9%E5%9D%91%E5%A4%87%E5%BF%98-bleed-container::before,
+  .intellij-idea-%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E8%B8%A9%E5%9D%91%E5%A4%87%E5%BF%98-bleed-container::after {
+    height: 35rem;
+  }
+    @media (max-width: 48rem) {
+        .intellij-idea-%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E8%B8%A9%E5%9D%91%E5%A4%87%E5%BF%98-container,
+        .intellij-idea-%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E8%B8%A9%E5%9D%91%E5%A4%87%E5%BF%98-container::before,
+        .intellij-idea-%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E8%B8%A9%E5%9D%91%E5%A4%87%E5%BF%98-container::after{
+            height: 20rem;
+            margin-bottom: 3rem;
+        }
+    }
+</style>
+ <div class="post-title-container
+  intellij-idea-%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E8%B8%A9%E5%9D%91%E5%A4%87%E5%BF%98 intellij-idea-%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E8%B8%A9%E5%9D%91%E5%A4%87%E5%BF%98-bleed-container bleed-hero-container
+    ">
+    <!--Post hero image source-->
+   <div class="heading-container hero-heading hero-heading-post">
+     <h1>
+          踩坑备忘
+     </h1>
+     <div class="post-meta">
+        <span>30/08/2018</span>
+        <span>
+              <a href="/tag/IntelliJ IDEA">#IntelliJ IDEA</a>
+              <a href="/tag/插件">#插件</a>
+              <a href="/tag/踩坑">#踩坑</a>
+        </span>
+     </div>
+   </div>
+ </div>
+   <p class="lead">记录关于 <code class="highlighter-rouge">IntelliJ IDEA</code> 插件开发中所遇到的坑
+<p>
+<h1 id="intellij-idea-插件开发">IntelliJ IDEA 插件开发</h1>
+<p>相关文档：
+<ul>
+ <li><a href="http://www.jetbrains.org/intellij/sdk/docs/basics.html">官方文档</a>
+</ul>
+<h2 id="导入已有插件项目时无法识别">导入已有插件项目时，无法识别</h2>
+<ul>
+ <li>检查 <code class="highlighter-rouge">Project Settings</code> 中 <code class="highlighter-rouge">Project</code> 的 <code class="highlighter-rouge">SDK</code> 是否使用正确，正确的 <code class="highlighter-rouge">SDK</code> 应该是 <code class="highlighter-rouge">IntelliJ IDEA XXXX</code>
+ <li>检查 <code class="highlighter-rouge">Project Settings</code> 中 <code class="highlighter-rouge">Modules</code> 的 <code class="highlighter-rouge">Sources</code>（源码路径）以及 <code class="highlighter-rouge">Resources</code>（资源路径）设置 是否正确
+</ul>
+<h2 id="调试相关">调试相关</h2>
+<h3 id="如何-rundebug-插件">如何 Run/Debug 插件</h3>
+<p><img src="/assets/img/2018_08_30_1.png" alt="step1" />
+<p>选择<code class="highlighter-rouge">Plugin</code>
+<img src="/assets/img/2018_09_11_1.png" alt="step2" />
+<p>如果出现如下图所示，查找不到可使用的模块
+<img src="/assets/img/2018_09_11_2.png" alt="error1" />
+<p>则是<code class="highlighter-rouge">IntelliJ IDEA</code>打开工程时，识别失败，把工程当做一般的<code class="highlighter-rouge">Java</code>项目来识别而导致的。
+<p><a href="https://stackoverflow.com/questions/18278440/how-to-import-and-run-existing-plugins-from-intellij-community-edition-repo">stack overflow解决方案</a>
+<p>找到项目的<code class="highlighter-rouge">.iml</code>文件，将其中的<code class="highlighter-rouge">JAVA_MODULE</code>修改为<code class="highlighter-rouge">PLUGIN_MODULE</code>即可。
+</article>
+<aside class="related">
+<h2>Related posts</h2>
+<ul class="related-posts">
+</aside>
+           <footer>
+    <span>分享日常学习的知识
+</span>
+    <span>written by dekuofa</span>
+</footer>
+       </div>
+<script type="text/javascript" src="/assets/js/theme.js"></script>
+<script type="text/javascript" src="/assets/js/barefoot.js"></script>
+    
