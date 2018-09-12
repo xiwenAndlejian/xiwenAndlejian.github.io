@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+       <meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+<title>旋转字符串 &#9642; dekuofa的博客</title>
+<!--
+<meta name="description" content="编程艺术：旋转字符串
+链表旋转。给出一个链表和一个数k，比如，链表为1→2→3→4→5→6，k=2，则旋转后2→1→6→5→4→3，若k=3，旋转后3→2→1→6→5→4，若k=4，旋转后4→3→2→1→6→5，用程序实现。
+">
+-->
+<meta name="description" content="分享日常学习的知识
+">
+<meta name="keywords" content="java, 算法, 字符串">
+<link rel="canonical" href="http://xiwenandlejian.github.io/posts/%E7%BF%BB%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2">
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="旋转字符串" />
+<meta name="twitter:description" content="分享日常学习的知识
+" />
+<meta name="twitter:image" content="http://xiwenandlejian.github.io" />
+<meta name="author" content="">
+<link rel="author" href="">
+<meta property="og:locale" content="">
+<meta property="og:type" content="article">
+<meta property="og:title" content="旋转字符串">
+<meta property="og:description" content="分享日常学习的知识
+">
+<meta property="og:url" content="http://xiwenandlejian.github.io/posts/%E7%BF%BB%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2">
+<meta property="og:site_name" content="dekuofa的博客">
+<link rel="stylesheet" href="/assets/vendor/normalize-css/normalize.css">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik:400,400italic,700,700italic">
+<style>
+    html {
+      font-family: "Rubik", -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+    }
+</style>
+<link rel="stylesheet" href="/assets/css/bf.css">
+      <link rel="shortcut icon" href="/assets/img/favicon.ico">
+   <body>
+       <div class="wrapper" id="blep">
+          <header>
+   <div class="menu">
+     <div class="logo">
+        <a href="/">dekuofa的博客</a>
+        <object type="image/svg+xml" data="/assets/img/dactl.svg" class="logosvg">Your browser does not support svg images</object>
+     </div>
+       <ul>
+           <li><a href="/about">about</a>
+           <li><a href="/archive">archive</a>
+       </ul>
+   </div>
+   <div class="social">
+     <ul>
+       <li>
+            <a href="https://github.com/xiwenAndlejian" target="_blank" class="smaller">
+              <span class="icon-github"></span>
+            </a>
+       <li>
+            <a href="mailto:xiwenandlejian@gmail.com" target="_blank">
+              <span class="icon-mail_outline"></span>
+            </a>
+       <li>
+            <a href="/feed.xml" target="_blank">
+                <span class="icon-rss_feed"></span>
+            </a>
+       <li>
+            <a href="#" onclick="switchTheme()" title="Switch theme?">
+              <span class="icon-invert_colors" id="theme-switcher"></span>
+            </a>
+     </ul>
+   </div>
+</header>
+<article class="post">
+<style>
+  .%E7%BF%BB%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2 {
+    margin-bottom: 2em;
+  }
+  .%E7%BF%BB%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2::before {
+    background-image: url('');
+    background-size: cover;
+    -webkit-filter: grayscale(1) brightness(0.5) contrast(0.5);
+    content:'';
+    position:absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+    z-index: -2;
+  }
+  .%E7%BF%BB%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2::after {
+    content:'';
+    position:absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+    background-color: rgba(100,0,255,0.8);
+    /*mix-blend-mode: darken;
+    mix-blend-mode: color-burn;
+    mix-blend-mode: hard-light;*/
+    mix-blend-mode: overlay;
+    z-index: -1;
+  }
+  .%E7%BF%BB%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2-container,
+  .%E7%BF%BB%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2-container::before,
+  .%E7%BF%BB%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2-container::after {
+    height: 25rem;
+  }
+  .%E7%BF%BB%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2-bleed-container,
+  .%E7%BF%BB%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2-bleed-container::before,
+  .%E7%BF%BB%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2-bleed-container::after {
+    height: 35rem;
+  }
+    @media (max-width: 48rem) {
+        .%E7%BF%BB%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2-container,
+        .%E7%BF%BB%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2-container::before,
+        .%E7%BF%BB%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2-container::after{
+            height: 20rem;
+            margin-bottom: 3rem;
+        }
+    }
+</style>
+ <div class="post-title-container
+  %E7%BF%BB%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2 %E7%BF%BB%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2-bleed-container bleed-hero-container
+    ">
+    <!--Post hero image source-->
+   <div class="heading-container hero-heading hero-heading-post">
+     <h1>
+          旋转字符串
+     </h1>
+     <div class="post-meta">
+        <span>22/08/2018</span>
+        <span>
+              <a href="/tag/java">#java</a>
+              <a href="/tag/算法">#算法</a>
+              <a href="/tag/字符串">#字符串</a>
+        </span>
+     </div>
+   </div>
+ </div>
+   <p class="lead">编程艺术：旋转字符串
+链表旋转。给出一个链表和一个数k，比如，链表为1→2→3→4→5→6，k=2，则旋转后2→1→6→5→4→3，若k=3，旋转后3→2→1→6→5→4，若k=4，旋转后4→3→2→1→6→5，用程序实现。
+<p>
+<h1 id="旋转字符串">旋转字符串</h1>
+<p><a href="https://github.com/julycoding/The-Art-Of-Programming-By-July/blob/master/ebook/zh/01.01.md">编程艺术01：旋转字符串</a>
+<h2 id="思路1截断再拼接">思路1：截断再拼接</h2>
+<p>假设整个链表长度为n，需要旋转k长度，原链表(S)，左链表(L)，右链表(R)
+当k == 0时，旋转后的链表为n→···→5→4→3→2→1。
+<p>当k == 1时，旋转后的链表为1→n→···→5→4→3→2。
+<p>当为k(k &lt; n) 时，旋转后的链表为k→(k-1)→···→1→n→(n-1)→···→(k+1)
+<p>我们将旋转后的链表拆成两部分，左链表为(R^T)n→(n-1)→···→(k+1)（长度n-k），右链表为(L^T)k→(k-1)→···→1（长度为k）
+R^T+L^T = n→(n-1)→···→1 = S^T
+因此，为了得到目标链表
+<ol>
+ <li>将原链表翻转得到S^T
+ <li>然后再根据k，截断S^T，获得L^T和R^T
+ <li>再以R^T + L^T的方式拼接，即可获得目标链表
+</ol>
+<h3 id="解法">解法</h3>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="n">ListNode</span> <span class="nf">rotateListNode</span><span class="o">(</span><span class="n">ListNode</span> <span class="n">head</span><span class="o">,</span> <span class="kt">int</span> <span class="n">k</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">head</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="c1">// 1. 翻转链表 时间复杂度：O(n)</span>
+    <span class="n">head</span> <span class="o">=</span> <span class="n">reverseListNode</span><span class="o">(</span><span class="n">head</span><span class="o">);</span>
+    <span class="kt">int</span> <span class="n">length</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="k">for</span> <span class="o">(</span><span class="n">ListNode</span> <span class="n">node</span> <span class="o">=</span> <span class="n">head</span><span class="o">;</span> <span class="n">node</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">;</span> <span class="n">node</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="na">next</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">length</span><span class="o">++;</span>
+    <span class="o">}</span>
+    <span class="c1">// 2.获取实际需要唯一的位数 k</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="n">length</span> <span class="o">&lt;=</span> <span class="n">k</span> <span class="o">?</span> <span class="n">k</span> <span class="o">%</span> <span class="n">length</span> <span class="o">:</span> <span class="n">k</span><span class="o">;</span>
+
+    <span class="n">ListNode</span> <span class="n">left</span><span class="o">;</span>
+    <span class="n">ListNode</span> <span class="n">right</span> <span class="o">=</span> <span class="n">head</span><span class="o">;</span>
+    <span class="c1">// 3.截取获取左右链表 执行次数(n-1)/2 ~= n/2 时间复杂度：O(n)</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">k</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">left</span> <span class="o">=</span> <span class="n">head</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">length</span> <span class="o">-</span> <span class="n">k</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
+        <span class="k">while</span> <span class="o">(</span><span class="n">n</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">right</span> <span class="o">=</span> <span class="n">right</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+            <span class="n">n</span><span class="o">--;</span>
+        <span class="o">}</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+        <span class="n">left</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="n">ListNode</span> <span class="n">pre</span> <span class="o">=</span> <span class="n">right</span><span class="o">;</span>
+    <span class="n">right</span> <span class="o">=</span> <span class="n">right</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+    <span class="c1">// 断开</span>
+    <span class="n">pre</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="c1">// 获取右链表的尾节点，连接左链表</span>
+    <span class="n">getTail</span><span class="o">(</span><span class="n">right</span><span class="o">).</span><span class="na">next</span> <span class="o">=</span> <span class="n">left</span><span class="o">;</span>
+
+    <span class="k">return</span> <span class="n">right</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="c1">// 获取链表的尾节点</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">ListNode</span> <span class="nf">getTail</span><span class="o">(</span><span class="n">ListNode</span> <span class="n">head</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">head</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span>
+        <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="n">ListNode</span> <span class="n">tail</span> <span class="o">=</span> <span class="n">head</span><span class="o">;</span>
+    <span class="k">for</span> <span class="o">(</span><span class="n">ListNode</span> <span class="n">node</span> <span class="o">=</span> <span class="n">tail</span><span class="o">.</span><span class="na">next</span><span class="o">;</span> <span class="n">node</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">;</span> <span class="n">node</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="na">next</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">tail</span> <span class="o">=</span> <span class="n">node</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">tail</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+<h2 id="思路2环链表">思路2：环链表</h2>
+<p>对于k=2时，原链表1→2→3→4→5→6的结果为2→1→6→5→4→3
+<ol>
+ <li>连接链表的首尾节点，成为环形链表
+ <li>断开2→3的链接，使得3成为首节点，当前链表3→4→5→6→1→2
+ <li>翻转链表即得2→1→6→5→4→3
+</ol>
+<h3 id="环链表解法">环链表解法</h3>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">ListNode</span> <span class="nf">rotateListNode</span><span class="o">(</span><span class="n">ListNode</span> <span class="n">head</span><span class="o">,</span> <span class="kt">int</span> <span class="n">k</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">head</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="c1">// 获取链表长度&amp;尾节点 时间复杂度O(n)</span>
+        <span class="n">ListNode</span> <span class="n">tail</span>   <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="kt">int</span>      <span class="n">length</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="k">for</span> <span class="o">(</span><span class="n">ListNode</span> <span class="n">node</span> <span class="o">=</span> <span class="n">head</span><span class="o">;</span> <span class="n">node</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">;</span> <span class="n">node</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="na">next</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">tail</span> <span class="o">=</span> <span class="n">node</span><span class="o">;</span>
+            <span class="n">length</span><span class="o">++;</span>
+        <span class="o">}</span>
+        <span class="c1">// 计算实际需要移动的节点</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="n">k</span> <span class="o">%</span> <span class="n">length</span><span class="o">;</span>
+        <span class="c1">// 更改头结点(可能) 时间复杂度O(n/2)，翻转链表 O(n)</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">k</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="c1">// 单链表变环表</span>
+            <span class="n">tail</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">head</span><span class="o">;</span>
+            <span class="n">ListNode</span> <span class="n">pre</span> <span class="o">=</span> <span class="n">head</span><span class="o">;</span>
+            <span class="k">for</span> <span class="o">(;</span> <span class="n">k</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">;</span> <span class="n">k</span><span class="o">--,</span> <span class="n">pre</span> <span class="o">=</span> <span class="n">pre</span><span class="o">.</span><span class="na">next</span><span class="o">)</span> <span class="o">{</span> <span class="o">}</span>
+            <span class="c1">// 记录新的结点</span>
+            <span class="n">ListNode</span> <span class="n">newHead</span> <span class="o">=</span> <span class="n">pre</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+            <span class="c1">//断开环表变单链表</span>
+            <span class="n">pre</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+            <span class="k">return</span> <span class="nf">reverseListNode</span><span class="o">(</span><span class="n">newHead</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="nf">reverseListNode</span><span class="o">(</span><span class="n">head</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="o">...</span>
+    <span class="err">此处省略</span> <span class="n">reverseListNode</span> <span class="err">代码</span>
+</code></pre>
+</div>
+</article>
+<aside class="related">
+<h2>Related posts</h2>
+<ul class="related-posts">
+</aside>
+           <footer>
+    <span>分享日常学习的知识
+</span>
+    <span>written by dekuofa</span>
+</footer>
+       </div>
+<script type="text/javascript" src="/assets/js/theme.js"></script>
+<script type="text/javascript" src="/assets/js/barefoot.js"></script>
+    
