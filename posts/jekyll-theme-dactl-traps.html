@@ -4,13 +4,27 @@
        <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
-<title>dekuofa的博客 </title>
-<!---->
+<title>jekyll 主题 dactl 踩坑备忘 &#9642; dekuofa的博客</title>
+<!--
+<meta name="description" content="dactl 踩坑备忘
+    行号显示bug
+    中文.md文件名导致博文样式异常
+行号显示bug
+修改dactl主题配置文件_config.yml
+span:
+      line_numbers: false
+    block:
+      line_numbers: false
+中文.md文件名导致博文样式异常
+不要使用中文名的.md文件作为博客文件，中文名会导致博客列表的样式加载失败。
+">
+-->
 <meta name="description" content="分享日常学习的知识
 ">
-<link rel="canonical" href="http://xiwenandlejian.github.io/page-2/">
+<meta name="keywords" content="jekyll, dactl, 踩坑">
+<link rel="canonical" href="http://xiwenandlejian.github.io/posts/jekyll-theme-dactl-traps">
 <meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="Blog" />
+<meta name="twitter:title" content="jekyll 主题 dactl 踩坑备忘" />
 <meta name="twitter:description" content="分享日常学习的知识
 " />
 <meta name="twitter:image" content="http://xiwenandlejian.github.io" />
@@ -18,10 +32,10 @@
 <link rel="author" href="">
 <meta property="og:locale" content="">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Blog">
+<meta property="og:title" content="jekyll 主题 dactl 踩坑备忘">
 <meta property="og:description" content="分享日常学习的知识
 ">
-<meta property="og:url" content="http://xiwenandlejian.github.io/page-2/">
+<meta property="og:url" content="http://xiwenandlejian.github.io/posts/jekyll-theme-dactl-traps">
 <meta property="og:site_name" content="dekuofa的博客">
 <link rel="stylesheet" href="/assets/vendor/normalize-css/normalize.css">
 <link rel="stylesheet" href="/assets/css/main.css">
@@ -67,12 +81,12 @@
      </ul>
    </div>
 </header>
-<article class="blog">
+<article class="post">
 <style>
-  .elves-learning-1 {
+  .jekyll-theme-dactl-traps {
     margin-bottom: 2em;
   }
-  .elves-learning-1::before {
+  .jekyll-theme-dactl-traps::before {
     background-image: url('');
     background-size: cover;
     -webkit-filter: grayscale(1) brightness(0.5) contrast(0.5);
@@ -83,7 +97,7 @@
     top: 0;
     z-index: -2;
   }
-  .elves-learning-1::after {
+  .jekyll-theme-dactl-traps::after {
     content:'';
     position:absolute;
     width: 100%;
@@ -96,59 +110,65 @@
     mix-blend-mode: overlay;
     z-index: -1;
   }
-  .elves-learning-1-container,
-  .elves-learning-1-container::before,
-  .elves-learning-1-container::after {
+  .jekyll-theme-dactl-traps-container,
+  .jekyll-theme-dactl-traps-container::before,
+  .jekyll-theme-dactl-traps-container::after {
     height: 25rem;
   }
-  .elves-learning-1-bleed-container,
-  .elves-learning-1-bleed-container::before,
-  .elves-learning-1-bleed-container::after {
+  .jekyll-theme-dactl-traps-bleed-container,
+  .jekyll-theme-dactl-traps-bleed-container::before,
+  .jekyll-theme-dactl-traps-bleed-container::after {
     height: 35rem;
   }
     @media (max-width: 48rem) {
-        .elves-learning-1-container,
-        .elves-learning-1-container::before,
-        .elves-learning-1-container::after{
+        .jekyll-theme-dactl-traps-container,
+        .jekyll-theme-dactl-traps-container::before,
+        .jekyll-theme-dactl-traps-container::after{
             height: 20rem;
             margin-bottom: 3rem;
         }
     }
 </style>
- <div class="
-    post-title-container
-  ">
-   <div class="heading-container ">
+ <div class="post-title-container
+  jekyll-theme-dactl-traps jekyll-theme-dactl-traps-bleed-container bleed-hero-container
+    ">
+    <!--Post hero image source-->
+   <div class="heading-container hero-heading hero-heading-post">
      <h1>
-          <a href="/posts/elves-learning-1" title="爬虫框架 elves 学习（初步使用）">爬虫框架 elves 学习（初步使用）</a>
+          jekyll 主题 dactl 踩坑备忘
      </h1>
-     <div class="
-        post-meta
-      ">
-        <span>13/08/2018</span>
+     <div class="post-meta">
+        <span>11/09/2018</span>
         <span>
-              <a href="/tag/java">#java</a>
-              <a href="/tag/elves">#elves</a>
-              <a href="/tag/爬虫">#爬虫</a>
+              <a href="/tag/jekyll">#jekyll</a>
+              <a href="/tag/dactl">#dactl</a>
+              <a href="/tag/踩坑">#踩坑</a>
         </span>
      </div>
    </div>
  </div>
-     <p class="lead">初识 elves，阅读示例代码&amp;解析相关代码功能
-       <div class="readmore">
-          <a href="/posts/elves-learning-1" role="button">Read more</a>
-       <div>
+   <h1 id="dactl-踩坑备忘">dactl 踩坑备忘</h1>
+<ul>
+ <li>
+   <p>行号显示bug
+ <li>
+   <p>中文.md文件名导致博文样式异常
+</ul>
+<h2 id="行号显示bug">行号显示bug</h2>
+<p>修改<code class="highlighter-rouge">dactl</code>主题配置文件<code class="highlighter-rouge">_config.yml</code>
+<div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">span</span><span class="pi">:</span>
+      <span class="s">line_numbers</span><span class="pi">:</span> <span class="s">false</span>
+    <span class="s">block</span><span class="pi">:</span>
+      <span class="s">line_numbers</span><span class="pi">:</span> <span class="s">false</span>
+</code></pre>
+</div>
+<h2 id="中文md文件名导致博文样式异常">中文.md文件名导致博文样式异常</h2>
+<p>不要使用中文名的.md文件作为博客文件，中文名会导致博客列表的样式加载失败。
 </article>
-<nav class="pagination" role="navigation">
-<hr/>
- <ul>
-   <li class="pagination-item-prev" >
-            <a rel="prev" href="/">&laquo; Previous</a>
-   <li class="pagination-item-next" >
-      <span>Next &raquo;</span>
- </ul>
-<hr/>
-</nav>
+<aside class="related">
+<h2>Related posts</h2>
+<ul class="related-posts">
+</aside>
            <footer>
     <span>分享日常学习的知识
 </span>

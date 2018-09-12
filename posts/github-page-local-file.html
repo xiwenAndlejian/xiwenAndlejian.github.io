@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+       <meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+<title>Github Page 使用静态文件 &#9642; dekuofa的博客</title>
+<!--
+<meta name="description" content="本地运行 jekyll 和 Github Page 显示效果不一致 发现是由于 Github Page 不支持第三方插件导致的 而想要使用插件效果，只能使用 jekyll 编译生成的静态文件 jekyll使用静态文件 参考 我的过程和参考中的内容稍有不同，主要是希望把 将当前文件夹重命名为compiled_site 在当前文件夹外创建一个文件夹jekyll_site 将compiled_site的内容移动到jekyll_site内 再将compiled_site移动到jekyll_site内 进入compiled_site中，使用git rm -r删除所有文件 在compiled_site中创建.nojeyll（空文件即可） 在jekyll_site中创建Rakefile desc "Build Jekyll site and copy files" task :build do system "jekyll build" system "cp .nojeyll _site" end 运行rake build 再到_site中执行git add --all :/ 提交git即可...">
+-->
+<meta name="description" content="分享日常学习的知识
+">
+<meta name="keywords" content="jekyll, github page">
+<link rel="canonical" href="http://xiwenandlejian.github.io/posts/github-page-local-file">
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Github Page 使用静态文件" />
+<meta name="twitter:description" content="分享日常学习的知识
+" />
+<meta name="twitter:image" content="http://xiwenandlejian.github.io" />
+<meta name="author" content="">
+<link rel="author" href="">
+<meta property="og:locale" content="">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Github Page 使用静态文件">
+<meta property="og:description" content="分享日常学习的知识
+">
+<meta property="og:url" content="http://xiwenandlejian.github.io/posts/github-page-local-file">
+<meta property="og:site_name" content="dekuofa的博客">
+<link rel="stylesheet" href="/assets/vendor/normalize-css/normalize.css">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik:400,400italic,700,700italic">
+<style>
+    html {
+      font-family: "Rubik", -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+    }
+</style>
+<link rel="stylesheet" href="/assets/css/bf.css">
+      <link rel="shortcut icon" href="/assets/img/favicon.ico">
+   <body>
+       <div class="wrapper" id="blep">
+          <header>
+   <div class="menu">
+     <div class="logo">
+        <a href="/">dekuofa的博客</a>
+        <object type="image/svg+xml" data="/assets/img/dactl.svg" class="logosvg">Your browser does not support svg images</object>
+     </div>
+       <ul>
+           <li><a href="/about">about</a>
+           <li><a href="/archive">archive</a>
+       </ul>
+   </div>
+   <div class="social">
+     <ul>
+       <li>
+            <a href="https://github.com/xiwenAndlejian" target="_blank" class="smaller">
+              <span class="icon-github"></span>
+            </a>
+       <li>
+            <a href="mailto:xiwenandlejian@gmail.com" target="_blank">
+              <span class="icon-mail_outline"></span>
+            </a>
+       <li>
+            <a href="/feed.xml" target="_blank">
+                <span class="icon-rss_feed"></span>
+            </a>
+       <li>
+            <a href="#" onclick="switchTheme()" title="Switch theme?">
+              <span class="icon-invert_colors" id="theme-switcher"></span>
+            </a>
+     </ul>
+   </div>
+</header>
+<article class="post">
+<style>
+  .github-page-local-file {
+    margin-bottom: 2em;
+  }
+  .github-page-local-file::before {
+    background-image: url('/assets/img/github.jpg');
+    background-size: cover;
+    -webkit-filter: grayscale(1) brightness(0.5) contrast(0.5);
+    content:'';
+    position:absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+    z-index: -2;
+  }
+  .github-page-local-file::after {
+    content:'';
+    position:absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+    background-color: 0.8);
+    /*mix-blend-mode: darken;
+    mix-blend-mode: color-burn;
+    mix-blend-mode: hard-light;*/
+    mix-blend-mode: overlay;
+    z-index: -1;
+  }
+  .github-page-local-file-container,
+  .github-page-local-file-container::before,
+  .github-page-local-file-container::after {
+    height: 25rem;
+  }
+  .github-page-local-file-bleed-container,
+  .github-page-local-file-bleed-container::before,
+  .github-page-local-file-bleed-container::after {
+    height: 35rem;
+  }
+    @media (max-width: 48rem) {
+        .github-page-local-file-container,
+        .github-page-local-file-container::before,
+        .github-page-local-file-container::after{
+            height: 20rem;
+            margin-bottom: 3rem;
+        }
+    }
+</style>
+ <div class="post-title-container
+  github-page-local-file github-page-local-file-bleed-container bleed-hero-container
+    ">
+    <!--Post hero image source-->
+   <div class="heading-container hero-heading hero-heading-post">
+     <h1>
+          Github Page 使用静态文件
+     </h1>
+     <div class="post-meta">
+        <span>12/09/2018</span>
+        <span>
+              <a href="/tag/jekyll">#jekyll</a>
+              <a href="/tag/github page">#github page</a>
+        </span>
+     </div>
+   </div>
+ </div>
+   <p class="lead">本地运行 jekyll 和 Github Page 显示效果不一致
+发现是由于 Github Page 不支持第三方插件导致的
+而想要使用插件效果，只能使用 jekyll 编译生成的静态文件
+<!---break--->
+<h2 id="jekyll使用静态文件">jekyll使用静态文件</h2>
+<p><a href="https://www.sitepoint.com/jekyll-plugins-github/">参考</a>
+<p>我的过程和参考中的内容稍有不同，主要是希望把
+<ol>
+ <li>
+   <p>将当前文件夹重命名为<code class="highlighter-rouge">compiled_site</code>
+ <li>
+   <p>在当前文件夹外创建一个文件夹<code class="highlighter-rouge">jekyll_site</code>
+ <li>
+   <p>将<code class="highlighter-rouge">compiled_site</code>的内容移动到<code class="highlighter-rouge">jekyll_site</code>内
+ <li>
+   <p>再将<code class="highlighter-rouge">compiled_site</code>移动到<code class="highlighter-rouge">jekyll_site</code>内
+ <li>
+   <p>进入<code class="highlighter-rouge">compiled_site</code>中，使用<code class="highlighter-rouge">git rm -r</code>删除所有文件
+ <li>
+   <p>在<code class="highlighter-rouge">compiled_site</code>中创建<code class="highlighter-rouge">.nojeyll</code>（空文件即可）
+ <li>
+   <p>在<code class="highlighter-rouge">jekyll_site</code>中创建<code class="highlighter-rouge">Rakefile</code>
+   <div class="language-shell highlighter-rouge"><pre class="highlight"><code>desc <span class="s2">"Build Jekyll site and copy files"</span>
+task :build <span class="k">do
+  </span>system <span class="s2">"jekyll build"</span>
+  system <span class="s2">"cp .nojeyll _site"</span>
+end
+</code></pre>
+   </div>
+ <li>
+   <p>运行<code class="highlighter-rouge">rake build</code>
+ <li>
+   <p>再到<code class="highlighter-rouge">_site</code>中执行<code class="highlighter-rouge">git add --all :/</code>
+ <li>
+   <p>提交<code class="highlighter-rouge">git</code>即可
+</ol>
+</article>
+<aside class="related">
+<h2>Related posts</h2>
+<ul class="related-posts">
+</aside>
+           <footer>
+    <span>分享日常学习的知识
+</span>
+    <span>written by dekuofa</span>
+</footer>
+       </div>
+<script type="text/javascript" src="/assets/js/theme.js"></script>
+<script type="text/javascript" src="/assets/js/barefoot.js"></script>
+    

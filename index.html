@@ -69,6 +69,203 @@
 </header>
 <article class="blog">
 <style>
+  .github-page-local-file {
+    margin-bottom: 2em;
+  }
+  .github-page-local-file::before {
+    background-image: url('/assets/img/github.jpg');
+    background-size: cover;
+    -webkit-filter: grayscale(1) brightness(0.5) contrast(0.5);
+    content:'';
+    position:absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+    z-index: -2;
+  }
+  .github-page-local-file::after {
+    content:'';
+    position:absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+    background-color: 0.8);
+    /*mix-blend-mode: darken;
+    mix-blend-mode: color-burn;
+    mix-blend-mode: hard-light;*/
+    mix-blend-mode: overlay;
+    z-index: -1;
+  }
+  .github-page-local-file-container,
+  .github-page-local-file-container::before,
+  .github-page-local-file-container::after {
+    height: 25rem;
+  }
+  .github-page-local-file-bleed-container,
+  .github-page-local-file-bleed-container::before,
+  .github-page-local-file-bleed-container::after {
+    height: 35rem;
+  }
+    @media (max-width: 48rem) {
+        .github-page-local-file-container,
+        .github-page-local-file-container::before,
+        .github-page-local-file-container::after{
+            height: 20rem;
+            margin-bottom: 3rem;
+        }
+    }
+</style>
+ <div class="
+    post-title-container
+        github-page-local-file github-page-local-file-container hero-hov
+  ">
+   <div class="heading-container hero-heading hero-heading-blog">
+     <h1>
+          <a href="/posts/github-page-local-file" title="Github Page 使用静态文件">Github Page 使用静态文件</a>
+     </h1>
+     <div class="
+        post-meta
+      ">
+        <span>12/09/2018</span>
+        <span>
+              <a href="/tag/jekyll">#jekyll</a>
+              <a href="/tag/github page">#github page</a>
+        </span>
+     </div>
+   </div>
+ </div>
+     <p class="lead">本地运行 jekyll 和 Github Page 显示效果不一致
+发现是由于 Github Page 不支持第三方插件导致的
+而想要使用插件效果，只能使用 jekyll 编译生成的静态文件
+<!---break--->
+<h2 id="jekyll使用静态文件">jekyll使用静态文件</h2>
+<p><a href="https://www.sitepoint.com/jekyll-plugins-github/">参考</a>
+<p>我的过程和参考中的内容稍有不同，主要是希望把
+<ol>
+ <li>
+   <p>将当前文件夹重命名为<code class="highlighter-rouge">compiled_site</code>
+ <li>
+   <p>在当前文件夹外创建一个文件夹<code class="highlighter-rouge">jekyll_site</code>
+ <li>
+   <p>将<code class="highlighter-rouge">compiled_site</code>的内容移动到<code class="highlighter-rouge">jekyll_site</code>内
+ <li>
+   <p>再将<code class="highlighter-rouge">compiled_site</code>移动到<code class="highlighter-rouge">jekyll_site</code>内
+ <li>
+   <p>进入<code class="highlighter-rouge">compiled_site</code>中，使用<code class="highlighter-rouge">git rm -r</code>删除所有文件
+ <li>
+   <p>在<code class="highlighter-rouge">compiled_site</code>中创建<code class="highlighter-rouge">.nojeyll</code>（空文件即可）
+ <li>
+   <p>在<code class="highlighter-rouge">jekyll_site</code>中创建<code class="highlighter-rouge">Rakefile</code>
+   <div class="language-shell highlighter-rouge"><pre class="highlight"><code>desc <span class="s2">"Build Jekyll site and copy files"</span>
+task :build <span class="k">do
+  </span>system <span class="s2">"jekyll build"</span>
+  system <span class="s2">"cp .nojeyll _site"</span>
+end
+</code></pre>
+   </div>
+ <li>
+   <p>运行<code class="highlighter-rouge">rake build</code>
+ <li>
+   <p>再到<code class="highlighter-rouge">_site</code>中执行<code class="highlighter-rouge">git add --all :/</code>
+ <li>
+   <p>提交<code class="highlighter-rouge">git</code>即可
+</ol>
+       <div class="readmore">
+          <a href="/posts/github-page-local-file" role="button">Read more</a>
+       <div>
+</article>
+ <hr>
+<article class="blog">
+<style>
+  .jekyll-theme-dactl-traps {
+    margin-bottom: 2em;
+  }
+  .jekyll-theme-dactl-traps::before {
+    background-image: url('');
+    background-size: cover;
+    -webkit-filter: grayscale(1) brightness(0.5) contrast(0.5);
+    content:'';
+    position:absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+    z-index: -2;
+  }
+  .jekyll-theme-dactl-traps::after {
+    content:'';
+    position:absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+    background-color: rgba(100,0,255,0.8);
+    /*mix-blend-mode: darken;
+    mix-blend-mode: color-burn;
+    mix-blend-mode: hard-light;*/
+    mix-blend-mode: overlay;
+    z-index: -1;
+  }
+  .jekyll-theme-dactl-traps-container,
+  .jekyll-theme-dactl-traps-container::before,
+  .jekyll-theme-dactl-traps-container::after {
+    height: 25rem;
+  }
+  .jekyll-theme-dactl-traps-bleed-container,
+  .jekyll-theme-dactl-traps-bleed-container::before,
+  .jekyll-theme-dactl-traps-bleed-container::after {
+    height: 35rem;
+  }
+    @media (max-width: 48rem) {
+        .jekyll-theme-dactl-traps-container,
+        .jekyll-theme-dactl-traps-container::before,
+        .jekyll-theme-dactl-traps-container::after{
+            height: 20rem;
+            margin-bottom: 3rem;
+        }
+    }
+</style>
+ <div class="
+    post-title-container
+  ">
+   <div class="heading-container ">
+     <h1>
+          <a href="/posts/jekyll-theme-dactl-traps" title="jekyll 主题 dactl 踩坑备忘">jekyll 主题 dactl 踩坑备忘</a>
+     </h1>
+     <div class="
+        post-meta
+      ">
+        <span>11/09/2018</span>
+        <span>
+              <a href="/tag/jekyll">#jekyll</a>
+              <a href="/tag/dactl">#dactl</a>
+              <a href="/tag/踩坑">#踩坑</a>
+        </span>
+     </div>
+   </div>
+ </div>
+     <h1 id="dactl-踩坑备忘">dactl 踩坑备忘</h1>
+<ul>
+ <li>
+   <p>行号显示bug
+ <li>
+   <p>中文.md文件名导致博文样式异常
+</ul>
+<h2 id="行号显示bug">行号显示bug</h2>
+<p>修改<code class="highlighter-rouge">dactl</code>主题配置文件<code class="highlighter-rouge">_config.yml</code>
+<div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">span</span><span class="pi">:</span>
+      <span class="s">line_numbers</span><span class="pi">:</span> <span class="s">false</span>
+    <span class="s">block</span><span class="pi">:</span>
+      <span class="s">line_numbers</span><span class="pi">:</span> <span class="s">false</span>
+</code></pre>
+</div>
+<h2 id="中文md文件名导致博文样式异常">中文.md文件名导致博文样式异常</h2>
+<p>不要使用中文名的.md文件作为博客文件，中文名会导致博客列表的样式加载失败。
+       <div class="readmore">
+          <a href="/posts/jekyll-theme-dactl-traps" role="button">Read more</a>
+       <div>
+</article>
+ <hr>
+<article class="blog">
+<style>
   .vue-dev-log-1 {
     margin-bottom: 2em;
   }
@@ -89,7 +286,7 @@
     width: 100%;
     left: 0;
     top: 0;
-    background-color: 0.8);
+    background-color: rgba(100,0,255,0.8);
     /*mix-blend-mode: darken;
     mix-blend-mode: color-burn;
     mix-blend-mode: hard-light;*/
@@ -287,86 +484,13 @@
           <a href="/posts/reverse-string" role="button">Read more</a>
        <div>
 </article>
- <hr>
-<article class="blog">
-<style>
-  .elves-learning-1 {
-    margin-bottom: 2em;
-  }
-  .elves-learning-1::before {
-    background-image: url('');
-    background-size: cover;
-    -webkit-filter: grayscale(1) brightness(0.5) contrast(0.5);
-    content:'';
-    position:absolute;
-    width: 100%;
-    left: 0;
-    top: 0;
-    z-index: -2;
-  }
-  .elves-learning-1::after {
-    content:'';
-    position:absolute;
-    width: 100%;
-    left: 0;
-    top: 0;
-    background-color: rgba(100,0,255,0.8);
-    /*mix-blend-mode: darken;
-    mix-blend-mode: color-burn;
-    mix-blend-mode: hard-light;*/
-    mix-blend-mode: overlay;
-    z-index: -1;
-  }
-  .elves-learning-1-container,
-  .elves-learning-1-container::before,
-  .elves-learning-1-container::after {
-    height: 25rem;
-  }
-  .elves-learning-1-bleed-container,
-  .elves-learning-1-bleed-container::before,
-  .elves-learning-1-bleed-container::after {
-    height: 35rem;
-  }
-    @media (max-width: 48rem) {
-        .elves-learning-1-container,
-        .elves-learning-1-container::before,
-        .elves-learning-1-container::after{
-            height: 20rem;
-            margin-bottom: 3rem;
-        }
-    }
-</style>
- <div class="
-    post-title-container
-  ">
-   <div class="heading-container ">
-     <h1>
-          <a href="/posts/elves-learning-1" title="爬虫框架 elves 学习（初步使用）">爬虫框架 elves 学习（初步使用）</a>
-     </h1>
-     <div class="
-        post-meta
-      ">
-        <span>13/08/2018</span>
-        <span>
-              <a href="/tag/java">#java</a>
-              <a href="/tag/elves">#elves</a>
-              <a href="/tag/爬虫">#爬虫</a>
-        </span>
-     </div>
-   </div>
- </div>
-     <p class="lead">初识 elves，阅读示例代码&amp;解析相关代码功能
-       <div class="readmore">
-          <a href="/posts/elves-learning-1" role="button">Read more</a>
-       <div>
-</article>
 <nav class="pagination" role="navigation">
 <hr/>
  <ul>
    <li class="pagination-item-prev" >
       <span>&laquo; Previous</span>
    <li class="pagination-item-next" >
-      <span>Next &raquo;</span>
+      <a rel="next" href="/page-2/">Next &raquo;</a>
  </ul>
 <hr/>
 </nav>

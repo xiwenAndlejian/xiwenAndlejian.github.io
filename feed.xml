@@ -6,9 +6,115 @@
 </description>
     <link>http://xiwenandlejian.github.io/</link>
     <atom:link href="http://xiwenandlejian.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 12 Sep 2018 21:13:46 +0800</pubDate>
-    <lastBuildDate>Wed, 12 Sep 2018 21:13:46 +0800</lastBuildDate>
+    <pubDate>Wed, 12 Sep 2018 23:01:23 +0800</pubDate>
+    <lastBuildDate>Wed, 12 Sep 2018 23:01:23 +0800</lastBuildDate>
     <generator>Jekyll v3.6.2</generator>
+    
+      <item>
+        <title>Github Page 使用静态文件</title>
+        <description>&lt;p class=&quot;lead&quot;&gt;本地运行 jekyll 和 Github Page 显示效果不一致
+发现是由于 Github Page 不支持第三方插件导致的
+而想要使用插件效果，只能使用 jekyll 编译生成的静态文件&lt;/p&gt;
+&lt;!---break---&gt;
+
+&lt;h2 id=&quot;jekyll使用静态文件&quot;&gt;jekyll使用静态文件&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.sitepoint.com/jekyll-plugins-github/&quot;&gt;参考&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;我的过程和参考中的内容稍有不同，主要是希望把&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;将当前文件夹重命名为&lt;code class=&quot;highlighter-rouge&quot;&gt;compiled_site&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;在当前文件夹外创建一个文件夹&lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll_site&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;将&lt;code class=&quot;highlighter-rouge&quot;&gt;compiled_site&lt;/code&gt;的内容移动到&lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll_site&lt;/code&gt;内&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;再将&lt;code class=&quot;highlighter-rouge&quot;&gt;compiled_site&lt;/code&gt;移动到&lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll_site&lt;/code&gt;内&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;进入&lt;code class=&quot;highlighter-rouge&quot;&gt;compiled_site&lt;/code&gt;中，使用&lt;code class=&quot;highlighter-rouge&quot;&gt;git rm -r&lt;/code&gt;删除所有文件&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;在&lt;code class=&quot;highlighter-rouge&quot;&gt;compiled_site&lt;/code&gt;中创建&lt;code class=&quot;highlighter-rouge&quot;&gt;.nojeyll&lt;/code&gt;（空文件即可）&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;在&lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll_site&lt;/code&gt;中创建&lt;code class=&quot;highlighter-rouge&quot;&gt;Rakefile&lt;/code&gt;&lt;/p&gt;
+
+    &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;desc &lt;span class=&quot;s2&quot;&gt;&quot;Build Jekyll site and copy files&quot;&lt;/span&gt;
+task :build &lt;span class=&quot;k&quot;&gt;do
+  &lt;/span&gt;system &lt;span class=&quot;s2&quot;&gt;&quot;jekyll build&quot;&lt;/span&gt;
+  system &lt;span class=&quot;s2&quot;&gt;&quot;cp .nojeyll _site&quot;&lt;/span&gt;
+end
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;运行&lt;code class=&quot;highlighter-rouge&quot;&gt;rake build&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;再到&lt;code class=&quot;highlighter-rouge&quot;&gt;_site&lt;/code&gt;中执行&lt;code class=&quot;highlighter-rouge&quot;&gt;git add --all :/&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;提交&lt;code class=&quot;highlighter-rouge&quot;&gt;git&lt;/code&gt;即可&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        <pubDate>Wed, 12 Sep 2018 00:00:00 +0800</pubDate>
+        <link>http://xiwenandlejian.github.io/posts/github-page-local-file</link>
+        <guid isPermaLink="true">http://xiwenandlejian.github.io/posts/github-page-local-file</guid>
+        
+        <category>jekyll</category>
+        
+        <category>github page</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>jekyll 主题 dactl 踩坑备忘</title>
+        <description>&lt;h1 id=&quot;dactl-踩坑备忘&quot;&gt;dactl 踩坑备忘&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;行号显示bug&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;中文.md文件名导致博文样式异常&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;行号显示bug&quot;&gt;行号显示bug&lt;/h2&gt;
+
+&lt;p&gt;修改&lt;code class=&quot;highlighter-rouge&quot;&gt;dactl&lt;/code&gt;主题配置文件&lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s&quot;&gt;span&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;s&quot;&gt;line_numbers&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;false&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;block&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;s&quot;&gt;line_numbers&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;false&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;中文md文件名导致博文样式异常&quot;&gt;中文.md文件名导致博文样式异常&lt;/h2&gt;
+
+&lt;p&gt;不要使用中文名的.md文件作为博客文件，中文名会导致博客列表的样式加载失败。&lt;/p&gt;
+</description>
+        <pubDate>Tue, 11 Sep 2018 00:00:00 +0800</pubDate>
+        <link>http://xiwenandlejian.github.io/posts/jekyll-theme-dactl-traps</link>
+        <guid isPermaLink="true">http://xiwenandlejian.github.io/posts/jekyll-theme-dactl-traps</guid>
+        
+        <category>jekyll</category>
+        
+        <category>dactl</category>
+        
+        <category>踩坑</category>
+        
+        
+      </item>
     
       <item>
         <title>Vue后台页面开发日记（一）</title>
